@@ -1,0 +1,27 @@
+To activate virtual environment for python development
+
+$sudo pip install virtualenv 
+$ mkdir ~/Dev
+$ cd ~/Dev
+$ mkdir venv && cd venv
+$ virtualenv -p python3.6 .
+$ source bin/activate
+
+To deactivate:
+
+(venv) $ deactivate
+
+To reactivate:
+
+$ cd /path/to/your/virtual/env/
+$ source bin/activate
+
+To setup django project 
+
+$ pip install django
+$ mkdir src && cd src
+$ django-admin.py startproject cfehome .
+$ cd cfehome
+$ python manage.py migrate
+$ python manage.py createsuperuser 
+
