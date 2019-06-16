@@ -25,3 +25,29 @@ $ cd cfehome
 $ python manage.py migrate
 $ python manage.py createsuperuser 
 
+To see all the python pakages installed 
+pip freeze
+
+To runserver:
+python manage.py runserver
+
+Admin username and password:
+username: pnjha
+password: ecdrid1234
+
+To create a new app/component:
+python manage.py startapp appname
+
+To make update 
+python manage.py makemigrations
+python manage.py migrate
+
+To run all of django stuff from python shell
+python manage.py shell 
+
+To get all the objects created for Product class
+Product.objects.all()
+
+To create Product class objects from python shell
+Product.objects.create(title='lenovo',description='chinnes',price='25000')
+
