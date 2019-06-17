@@ -51,3 +51,5 @@ Product.objects.all()
 To create Product class objects from python shell
 Product.objects.create(title='lenovo',description='chinnes',price='25000')
 
+For all html file
+Create templates director at the root of project where manage.py exits and update the location in setting.py templates dictionary
