@@ -5,7 +5,27 @@ Django unleashed
 <br>
 User: {{ request.user }}
 <br>
-Username: {{ username }}
+Username: {{ username|capfirst|title }}
 <br>
+
+Html response : {{ html_text|safe }}
+
+{% if gender == "Male" %}
 Gender: {{ gender }}
+{% endif %}
+
+<ul>
+	{% for item in my_list %}
+		{% if item > 10 %}
+			<li>
+				{{ forloop.counter }} - {{ item|add:10 }}
+			</li>
+		{% elif item <= 10 %}	
+			<li>
+				{{ forloop.counter }} - {{ item|add:10 }}
+			</li>	
+		{% endif %}
+	{% endfor %}	
+</ul>
+
 {% endblock %}

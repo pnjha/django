@@ -53,3 +53,15 @@ Product.objects.create(title='lenovo',description='chinnes',price='25000')
 
 For all html file
 Create templates director at the root of project where manage.py exits and update the location in setting.py templates dictionary
+
+Docs:
+See built in template tags in django documentations ofr something like for loops if statements etc.
+
+Shell access of model and its objects:
+from products.models import Product
+Product.objects.all() //to see all the objects ofthe model
+Product.objects.get(id=3) // to get a specific object with given id
+dir(obj) //to get all the object related fields to access
+
+Imp Note:
+One can have in app templates directory to work with rather than using global template directory. Django looks for in app templates if it does not find it anywhere else.   
