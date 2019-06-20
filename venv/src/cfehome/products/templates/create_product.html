@@ -7,4 +7,29 @@
 	<input type="submit" value="Save"/>
 </form>
 
+<!-- <form method="POST"> {% csrf_token %}
+	<input type="text" name="title", placeholder="Product Title"/><br>
+	<input type="text" name="description", placeholder="Description"/><br>
+	<input type="text" name="price", placeholder="Price"/><br>
+	<input type="text" name="summary", placeholder="Summary"/><br>
+	<input type="text" name="manufacturer", placeholder="Manufacturer"/><br>
+	<input type="submit" value="Save"/><br>
+</form>
+
+
+<p>
+	<h2>
+	{% if product_obj is not None and product_obj != "No data" %}
+		Last product saved details<br>
+		Title : {{ product_obj.title }}<br>
+		Description : {{ product_obj.description }}<br>
+		Price : {{ product_obj.price }}<br>
+		Summary : {{ product_obj.summary }}<br>
+		Manufacturer : {{ product_obj.manufacturer }}<br>
+	{% elif product_obj != "No data" %}
+		Error saving the product details	
+	{% endif %} 
+	</h2>
+</p> -->
+
 {% endblock %}

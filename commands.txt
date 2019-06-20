@@ -65,3 +65,17 @@ dir(obj) //to get all the object related fields to access
 
 Imp Note:
 One can have in app templates directory to work with rather than using global template directory. Django looks for in app templates if it does not find it anywhere else.   
+
+
+Form to make google or facebook search
+<form action="http://www.facebook.com/search" method="GET">
+	<input type="text" name="q", placeholder="your title"/>
+	<input type="submit" value="Save"/>
+</form>
+name ="q" is absolutely essential(reason unknown)
+
+Render form as paragraph:
+form.as_p
+
+To raise a error:
+raise forms.ValidationError("message")
