@@ -1,25 +1,31 @@
-from django.shortcuts import render
+from django.http import Http404
+from django.shortcuts import render,get_object_or_404,redirect
 from .models import Product
 from .forms import ProductForm, RawProductForm
+
 # Create your views here.
 
-def product_create_form(request,*args,**kwargs):
+# def product_create_form(request,*args,**kwargs):
 
-	my_form = RawProductForm()
+# 	initial_data = {
+# 		'title' : "random"
+# 	}
 
-	if request.method == "POST":
-		my_form = RawProductForm(request.POST)
-		if my_form.is_valid():
-			print(my_form.cleaned_data)
-			product_obj = Product.objects.create(**my_form.cleaned_data) 
-		else:
-			print(my_form.errors)
+# 	my_form = RawProductForm(initial=initial_data)
 
-	context = {
-		"form": my_form
-	}
+# 	if request.method == "POST":
+# 		my_form = RawProductForm(request.POST or None)
+# 		if my_form.is_valid():
+# 			print(my_form.cleaned_data)
+# 			product_obj = Product.objects.create(**my_form.cleaned_data) 
+# 		else:
+# 			print(my_form.errors)
 
-	return render(request,"create_product.html",context)
+# 	context = {
+# 		"form": my_form
+# 	}
+
+# 	return render(request,"create_product.html",context)
 
 # def product_create_form(request,*args,**kwargs):
 	
@@ -45,23 +51,36 @@ def product_create_form(request,*args,**kwargs):
 
 # 	return render(request,"create_product.html",context)
 
-# def product_create_form(request,*args,**kwargs):
-# 	form = ProductForm(request.POST or None)
-# 	if form.is_valid():
-# 		form.save()
-# 		form = ProductForm()
+def product_create_form(request,*args,**kwargs):
 
-# 	context = {
-# 		"form" : form
-# 	}
+	initial_data = {
+		'title': "prakash"
+	}
 
-# 	context = {}
+	obj = Product.objects.get(id=16)
+	form = ProductForm(request.POST or None,initial=initial_data,instance=obj)
 
-# 	return render(request,"create_product.html",context)
+	if request.method == "POST":
+		if form.is_valid():
+			form.save()
+			form = ProductForm()
+
+	context = {
+		"form" : form
+	}
+
+	return render(request,"create_product.html",context)
 
 
-def product_detail_view(request,*args,**kwargs):
-	obj = Product.objects.get(id=1)
+def product_detail_view(request,my_id,*args,**kwargs):
+	# obj = Product.objects.get(id=my_id)
+	# obj = get_object_or_404(Product,id=my_id)
+	
+	try:
+		obj = Product.objects.get(id=my_id)
+	except:
+		raise Http404
+
 	# context = {
 	# 	"title" : obj.title,
 	# 	'description': obj.description
@@ -71,3 +90,25 @@ def product_detail_view(request,*args,**kwargs):
 		"object" : obj
 	}
 	return render(request,"detail.html",context)
+
+def product_delete_view(request,my_id):
+	
+	obj = get_object_or_404(Product,id=my_id)
+	
+	if request.method == "POST":
+		obj.delete()
+		return redirect("../1")
+
+	context = {
+		"object" : obj
+	}
+	return render(request,"delete_product.html",context)
+
+def product_list_view(request):
+	
+	queryset = Product.objects.all()
+	
+	context = {
+		"object_list" : queryset
+	}
+	return render(request,"product_list.html",context)
